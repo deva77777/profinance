@@ -1,0 +1,37 @@
+# robots.txt for CalcWealth.xyz
+# High-Performance Financial Calculator Suite
+
+# Allow all search engines to crawl the entire site
+User-agent: *
+Allow: /
+
+# Specific permissions for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+# Allow Google AdSense crawler
+User-agent: Mediapartners-Google
+Allow: /
+
+# Allow Google Ads crawler
+User-agent: AdsBot-Google
+Allow: /
+
+# Allow mobile crawlers
+User-agent: Googlebot-Mobile
+Allow: /
+
+# Sitemap location
+Sitemap: https://calcwealth.xyz/sitemap.xml
+
+# Host declaration
+Host: https://calcwealth.xyz

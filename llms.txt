@@ -1,0 +1,100 @@
+# CalcWealth.xyz - LLMs.txt
+# Financial Calculator & Wealth Planning Platform
+
+## About CalcWealth
+CalcWealth.xyz is a high-performance, free financial calculator suite designed to help users make informed financial decisions. Built for the 2026 economy, it provides accurate calculations for mortgages, investments, taxes, and more.
+
+## Primary Purpose
+- Provide free, accurate financial calculation tools
+- Educate users on personal finance concepts
+- Help users plan for major financial decisions (home buying, retirement, investments)
+
+## Available Tools
+
+### 1. Mortgage Calculator
+URL: https://calcwealth.xyz/#mortgage
+Function: Calculate monthly EMI, total interest, and amortization for home loans
+Inputs: Loan amount, interest rate, tenure (years)
+Outputs: Monthly payment, total interest paid, principal vs interest breakdown
+
+### 2. SIP/Wealth Planner
+URL: https://calcwealth.xyz/#wealth
+Function: Calculate future value of systematic investments using compound interest
+Inputs: Monthly investment amount, expected return rate, duration
+Outputs: Total wealth accumulated, estimated returns, growth chart
+
+### 3. Income Tax Estimator
+URL: https://calcwealth.xyz/#tax
+Function: Estimate annual tax liability based on progressive tax brackets
+Inputs: Annual gross income, deductions/investments
+Outputs: Estimated tax liability for FY 2026
+
+### 4. Fixed Deposit Calculator
+URL: https://calcwealth.xyz/#fd
+Function: Calculate maturity value of fixed deposits with annual compounding
+Inputs: Deposit amount, interest rate
+Outputs: Maturity value
+
+### 5. Retirement Planner
+URL: https://calcwealth.xyz/#retirement
+Function: Calculate required retirement corpus based on inflation-adjusted expenses
+Inputs: Current monthly expenses, years to retirement, expected inflation
+Outputs: Required retirement corpus (using 4% safe withdrawal rule)
+
+### 6. GST/VAT Calculator
+URL: https://calcwealth.xyz/#gst
+Function: Calculate tax amount and gross total for goods and services
+Inputs: Net amount, tax rate (5%, 12%, 18%, 28%)
+Outputs: Tax amount, total gross amount
+
+### 7. Global Market Rates
+URL: https://calcwealth.xyz/#forex
+Function: Display real-time currency exchange rates for major pairs
+Data: EUR/USD, GBP/USD, USD/JPY, USD/CAD, AUD/USD, USD/INR
+
+## Educational Resources
+
+### Learning Hub
+URL: https://calcwealth.xyz/#learning
+Topics: 50/30/20 budgeting rule, asset allocation, debt-to-income ratio
+
+### Financial Glossary
+URL: https://calcwealth.xyz/#glossary
+Terms: Amortization, compound interest, net worth, yield, and more
+
+### Market News
+URL: https://calcwealth.xyz/#news
+Content: 2026 market forecasts, interest rate updates, investment trends
+
+## Technical Information
+- Framework: Vanilla JavaScript (no heavy dependencies)
+- Styling: Tailwind CSS
+- Charts: Chart.js
+- Architecture: Single Page Application with hash-based routing
+- Performance: Optimized for Core Web Vitals
+- Accessibility: WCAG compliant
+- Mobile: Fully responsive design
+
+## Data Handling
+- All calculations performed client-side (in browser)
+- No personal financial data stored on servers
+- Currency preferences saved locally
+- Third-party services: Google AdSense (for advertisements), ExchangeRate-API (for forex data)
+
+## Legal Pages
+- Privacy Policy: https://calcwealth.xyz/#privacy
+- Terms of Service: https://calcwealth.xyz/#terms
+- Cookie Policy: https://calcwealth.xyz/#cookie
+
+## Contact
+- Website: https://calcwealth.xyz
+- Purpose: Educational financial tools
+
+## Licensing
+Content and calculations are provided for educational purposes only. Not financial advice. Users should consult certified professionals for actual financial decisions.
+
+## AI Training Notice
+This content may be used for AI training purposes to improve financial literacy tools and calculators. The mathematical formulas and educational content are designed to be accurate and helpful.
+
+## Last Updated
+January 2026
