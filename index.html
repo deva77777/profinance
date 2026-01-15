@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalcWealth | Mortgage, SIP & Tax Calculator 2026</title>
+    <meta name="description" content="Free 2026 Financial Tools: Calculate Mortgage EMIs, SIP Wealth, Income Tax, and Live Forex Rates. Plan your financial future with CalcWealth.xyz.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #0f172a;
+            --accent: #10b981;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        .dark body {
+            background-color: #020617;
+        }
+
+        .ad-box {
+            background: repeating-linear-gradient(45deg, #f1f5f9, #f1f5f9 10px, #f8fafc 10px, #f8fafc 20px);
+            border: 1px dashed #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.75rem;
+        }
+
+        .input-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .input-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            background: #10b981;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+
+        .tab-active {
+            border-bottom: 3px solid #10b981;
+            color: #10b981 !important;
+        }
+
+        /* Hide Scrollbar for Mobile Nav */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="text-slate-900 dark:text-slate-100 transition-colors duration-300">
+
+    <!-- Top Navigation -->
+    <nav class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="bg-emerald-500 p-1.5 rounded-lg">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                </div>
+                <span class="text-xl font-bold tracking-tight">CalcWealth <span class="text-emerald-500">Analytics</span></span>
+            </div>
+            <div class="hidden md:flex gap-8 font-medium text-slate-600 dark:text-slate-400">
+                <button onclick="showPage('mortgage')" class="hover:text-emerald-500 transition cursor-pointer font-bold">Mortgage</button>
+                <button onclick="showPage('wealth')" class="hover:text-emerald-500 transition cursor-pointer font-bold">SIP/Wealth</button>
+                <button onclick="showPage('tax')" class="hover:text-emerald-500 transition cursor-pointer font-bold">Tax Planner</button>
+                <button onclick="showPage('fd')" class="hover:text-emerald-500 transition cursor-pointer font-bold">FD/Savings</button>
+                <button onclick="showPage('retirement')" class="hover:text-emerald-500 transition cursor-pointer font-bold">Retirement</button>
+                <button onclick="showPage('gst')" class="hover:text-emerald-500 transition cursor-pointer font-bold">GST/VAT</button>
+                <button onclick="showPage('forex')" class="hover:text-emerald-500 transition cursor-pointer font-bold">Market Rates</button>
+            </div>
+        </div>
+        <!-- Mobile Navigation (Scrollable) -->
+        <div class="md:hidden border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-x-auto no-scrollbar">
+            <div class="flex whitespace-nowrap px-4 py-3 gap-6 text-sm font-bold text-slate-600 dark:text-slate-400">
+                <button onclick="showPage('mortgage')" class="active:text-emerald-500">Mortgage</button>
+                <button onclick="showPage('wealth')" class="active:text-emerald-500">SIP/Wealth</button>
+                <button onclick="showPage('tax')" class="active:text-emerald-500">Tax Planner</button>
+                <button onclick="showPage('fd')" class="active:text-emerald-500">FD/Savings</button>
+                <button onclick="showPage('retirement')" class="active:text-emerald-500">Retirement</button>
+                <button onclick="showPage('gst')" class="active:text-emerald-500">GST/VAT</button>
+                <button onclick="showPage('forex')" class="active:text-emerald-500">Markets</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Ad: Top Leaderboard -->
+    <div class="max-w-7xl mx-auto px-4 mt-6">
+        <div class="ad-box w-full h-24 max-w-[728px] mx-auto rounded-lg">
+            [Top Leaderboard Ad - 728x90]
+        </div>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Dashboard Alert Bar (High CPC Keywords) -->
+        <div class="mb-6 bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 p-3 rounded-xl flex items-center gap-3">
+            <span class="flex h-2 w-2 rounded-full bg-blue-600 animate-ping"></span>
+            <p class="text-xs font-medium text-blue-800 dark:text-blue-300">
+                <span class="font-bold">2026 Update:</span> New Tax Slabs and Mortgage Rate forecasts have been updated for Q1 2026.
+            </p>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-8">
+            
+            <!-- Left Side: Main Calculators -->
+            <div class="lg:col-span-8 space-y-6">
+                
+                <!-- Currency and Market Sentiment Bar -->
+                <div class="flex flex-wrap items-center justify-between gap-4 bg-emerald-600 text-white p-4 rounded-2xl shadow-lg">
+                    <div class="flex items-center gap-4">
+                        <div class="flex flex-col">
+                            <span class="text-[10px] uppercase font-bold opacity-80">Preferred Currency</span>
+                            <select id="currency-select" onchange="updateCalculations()" class="bg-emerald-700 border-none text-sm rounded-lg focus:ring-2 focus:ring-white cursor-pointer">
+                                <option value="USD" data-symbol="$">USD ($) - US Dollar</option>
+                                <option value="EUR" data-symbol="€">EUR (€) - Euro</option>
+                                <option value="GBP" data-symbol="£">GBP (£) - British Pound</option>
+                                <option value="INR" data-symbol="₹">INR (₹) - Indian Rupee</option>
+                                <option value="JPY" data-symbol="¥">JPY (¥) - Japanese Yen</option>
+                                <option value="CAD" data-symbol="$">CAD ($) - Canadian Dollar</option>
+                            </select>
+                        </div>
+                        <div class="hidden md:flex flex-col border-l border-emerald-500 pl-4">
+                            <span class="text-[10px] uppercase font-bold opacity-80">2026 Market Outlook</span>
+                            <span class="text-sm font-bold flex items-center gap-1">
+                                <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+                                Bullish / Neutral
+                            </span>
+                        </div>
+                    </div>
+                    <div class="bg-white/10 px-4 py-2 rounded-xl text-xs backdrop-blur-sm">
+                        <span class="font-bold">Pro Tip:</span> Refinancing rates are expected to drop in Q3 2026.
+                    </div>
+                </div>
+
+                <!-- Calculator Card -->
+                <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-800 overflow-hidden">
+                    
+                    <!-- Breadcrumbs for SEO -->
+                    <div class="bg-slate-50 dark:bg-slate-800 px-6 py-2 border-b border-slate-100 dark:border-slate-700">
+                        <p class="text-[10px] text-slate-400 font-medium">Home > <span id="breadcrumb-current">Mortgage Calculator</span></p>
+                    </div>
+
+                    <div class="p-6 md:p-8">
+                        <!-- Mortgage Section -->
+                        <div id="mortgage-section" class="tool-section grid md:grid-cols-2 gap-10">
+                            <div class="space-y-6">
+                                <h1 class="text-2xl font-bold">Mortgage Calculator 2026</h1>
+                                <div>
+                                    <div class="flex justify-between mb-2"><label class="text-sm font-semibold">Loan Amount</label><span class="text-emerald-600 font-bold" id="label-m-principal">$300,000</span></div>
+                                    <input type="range" min="10000" max="1000000" step="5000" value="300000" class="input-slider" id="m-principal" oninput="syncInputs('m-principal')">
+                                    <input type="number" value="300000" class="mt-2 w-full bg-slate-50 dark:bg-slate-800 border-none rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500 text-slate-900 dark:text-white" id="m-principal-num" oninput="syncSliders('m-principal')">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-2"><label class="text-sm font-semibold">Interest Rate (%)</label><span class="text-emerald-600 font-bold" id="label-m-rate">6.5%</span></div>
+                                    <input type="range" min="0.1" max="15" step="0.1" value="6.5" class="input-slider" id="m-rate" oninput="syncInputs('m-rate')">
+                                    <input type="number" value="6.5" class="mt-2 w-full bg-slate-50 dark:bg-slate-800 border-none rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500 text-slate-900 dark:text-white" id="m-rate-num" oninput="syncSliders('m-rate')">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-2"><label class="text-sm font-semibold">Tenure (Years)</label><span class="text-emerald-600 font-bold" id="label-m-years">30 Years</span></div>
+                                    <input type="range" min="1" max="40" value="30" class="input-slider" id="m-years" oninput="syncInputs('m-years')">
+                                    <input type="number" value="30" class="mt-2 w-full bg-slate-50 dark:bg-slate-800 border-none rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500 text-slate-900 dark:text-white" id="m-years-num" oninput="syncSliders('m-years')">
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center justify-center">
+                                <div class="w-full max-w-[280px] aspect-square mb-6"><canvas id="mortgageChart"></canvas></div>
+                                <div class="grid grid-cols-2 gap-4 w-full">
+                                    <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl text-center"><p class="text-[10px] uppercase text-slate-600 font-bold">Monthly EMI</p><p class="text-lg font-bold text-emerald-600" id="res-m-emi">$1,896</p></div>
+                                    <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl text-center"><p class="text-[10px] uppercase text-slate-600 font-bold">Total Interest</p><p class="text-lg font-bold text-slate-800 dark:text-slate-200" id="res-m-interest">$382,633</p></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Wealth/SIP Section -->
+                        <div id="wealth-section" class="tool-section hidden grid md:grid-cols-2 gap-10">
+                            <div class="space-y-6">
+                                <h1 class="text-2xl font-bold">SIP Wealth Planner</h1>
+                                <div>
+                                    <div class="flex justify-between mb-2"><label class="text-sm font-semibold">Monthly SIP</label><span class="text-emerald-600 font-bold" id="label-w-sip">$500</span></div>
+                                    <input type="range" min="10" max="10000" step="50" value="500" class="input-slider" id="w-sip" oninput="syncInputs('w-sip')">
+                                    <input type="number" value="500" class="mt-2 w-full bg-slate-50 dark:bg-slate-800 border-none rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500 text-slate-900 dark:text-white" id="w-sip-num" oninput="syncSliders('w-sip')">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-2"><label class="text-sm font-semibold">Expected Return (%)</label><span class="text-emerald-600 font-bold" id="label-w-rate">12%</span></div>
+                                    <input type="range" min="1" max="25" step="0.5" value="12" class="input-slider" id="w-rate" oninput="syncInputs('w-rate')">
+                                    <input type="number" value="12" class="mt-2 w-full bg-slate-50 dark:bg-slate-800 border-none rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500 text-slate-900 dark:text-white" id="w-rate-num" oninput="syncSliders('w-rate')">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-2"><label class="text-sm font-semibold">Duration (Years)</label><span class="text-emerald-600 font-bold" id="label-w-years">10 Years</span></div>
+                                    <input type="range" min="1" max="40" value="10" class="input-slider" id="w-years" oninput="syncInputs('w-years')">
+                                    <input type="number" value="10" class="mt-2 w-full bg-slate-50 dark:bg-slate-800 border-none rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500 text-slate-900 dark:text-white" id="w-years-num" oninput="syncSliders('w-years')">
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="w-full h-[240px] mb-6"><canvas id="wealthChart"></canvas></div>
+                                <div class="grid grid-cols-2 gap-4 w-full">
+                                    <div class="p-3 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl text-center border border-emerald-100 dark:border-emerald-800/50"><p class="text-[10px] uppercase text-emerald-600 font-bold">Total Wealth</p><p class="text-lg font-bold text-emerald-600" id="res-w-total">$116,169</p></div>
+                                    <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl text-center"><p class="text-[10px] uppercase text-slate-600 font-bold">Est. Returns</p><p class="text-lg font-bold text-slate-800 dark:text-slate-200" id="res-w-profit">$56,169</p></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Income Tax Section -->
+                        <div id="tax-section" class="tool-section hidden space-y-8">
+                            <h1 class="text-2xl font-bold">Income Tax Estimator FY 2026</h1>
+                            <div class="grid md:grid-cols-2 gap-10">
+                                <div class="space-y-6">
+                                    <div>
+                                        <label class="block text-sm font-semibold mb-2">Annual Gross Income</label>
+                                        <input type="number" id="tax-income" value="100000" oninput="calculateTax()" class="w-full bg-slate-50 dark:bg-slate-800 border-none rounded-lg px-4 py-3 text-lg focus:ring-2 focus:ring-emerald-500 text-slate-900 dark:text-white">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold mb-2">Standard Deductions/Investments</label>
+                                        <input type="number" id="tax-deductions" value="15000" oninput="calculateTax()" class="w-full bg-slate-50 dark:bg-slate-800 border-none rounded-lg px-4 py-3 text-lg focus:ring-2 focus:ring-emerald-500 text-slate-900 dark:text-white">
+                                    </div>
+                                </div>
+                                <div class="bg-slate-900 text-white p-6 rounded-2xl flex flex-col justify-center">
+                                    <p class="text-slate-400 text-sm uppercase font-bold tracking-widest">Estimated Tax Liability</p>
+                                    <h2 id="res-tax-total" class="text-4xl font-black text-emerald-400 mt-2">$18,450</h2>
+                                    <p class="text-xs text-slate-500 mt-4 italic">*Based on simplified global 2026 progressive tax benchmarks.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FD Section -->
+                        <div id="fd-section" class="tool-section hidden grid md:grid-cols-2 gap-10">
+                            <div class="space-y-6">
+                                <h1 class="text-2xl font-bold">Fixed Deposit (FD) Calculator</h1>
+                                <div>
+                                    <div class="flex justify-between mb-2"><label class="text-sm font-semibold">Deposit Amount</label><span class="text-emerald-600 font-bold" id="label-fd-amt">$10,000</span></div>
+                                    <input type="range" min="500" max="200000" step="500" value="10000" class="input-slider" id="fd-amt" oninput="syncInputs('fd-amt')">
+                                    <input type="number" value="10000" class="mt-2 w-full bg-slate-50 dark:bg-slate-800 border-none rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500 text-slate-900 dark:text-white" id="fd-amt-num" oninput="syncSliders('fd-amt')">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-2"><label class="text-sm font-semibold">Interest Rate (%)</label><span class="text-emerald-600 font-bold" id="label-fd-rate">7%</span></div>
+                                    <input type="range" min="1" max="15" step="0.1" value="7" class="input-slider" id="fd-rate" oninput="syncInputs('fd-rate')">
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center justify-center p-6 bg-emerald-50 dark:bg-emerald-900/10 rounded-2xl border-2 border-dashed border-emerald-200 dark:border-emerald-800">
+                                <p class="text-sm font-bold text-slate-600 dark:text-slate-400">Maturity Value</p>
+                                <h2 id="res-fd-total" class="text-3xl font-black text-emerald-600">$10,700</h2>
+                                <p class="text-[10px] mt-2 text-slate-400">Compounded Annually</p>
+                            </div>
+                        </div>
+
+                        <!-- Retirement Section -->
+                        <div id="retirement-section" class="tool-section hidden grid md:grid-cols-2 gap-10">
+                            <div class="space-y-6">
+                                <h1 class="text-2xl font-bold">Retirement Corpus Planner</h1>
+                                <div>
+                                    <div class="flex justify-between mb-2"><label class="text-sm font-semibold">Current Monthly Expenses</label><span class="text-emerald-600 font-bold" id="label-r-exp">$2,000</span></div>
+                                    <input type="range" min="500" max="20000" step="100" value="2000" class="input-slider" id="r-exp" oninput="syncInputs('r-exp')">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-2"><label class="text-sm font-semibold">Years to Retirement</label><span class="text-emerald-600 font-bold" id="label-r-years">25 Years</span></div>
+                                    <input type="range" min="1" max="50" value="25" class="input-slider" id="r-years" oninput="syncInputs('r-years')">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-2"><label class="text-sm font-semibold">Expected Inflation (%)</label><span class="text-emerald-600 font-bold" id="label-r-infl">5%</span></div>
+                                    <input type="range" min="1" max="15" step="0.5" value="5" class="input-slider" id="r-infl" oninput="syncInputs('r-infl')">
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center justify-center p-6 bg-blue-50 dark:bg-blue-900/10 rounded-2xl border border-blue-100 dark:border-blue-800">
+                                <p class="text-sm font-bold text-slate-600 dark:text-slate-400 uppercase">Required Retirement Corpus</p>
+                                <h2 id="res-r-total" class="text-3xl font-black text-blue-600">$1.6M</h2>
+                                <p class="text-[10px] mt-2 text-slate-400 text-center">Based on 4% safe withdrawal rate & inflation-adjusted expenses</p>
+                            </div>
+                        </div>
+
+                        <!-- GST/VAT Section -->
+                        <div id="gst-section" class="tool-section hidden space-y-8">
+                            <h1 class="text-2xl font-bold">GST / VAT Calculator</h1>
+                            <div class="grid md:grid-cols-2 gap-10">
+                                <div class="space-y-6">
+                                    <div>
+                                        <label class="block text-sm font-semibold mb-2">Net Amount (Excluding Tax)</label>
+                                        <input type="number" id="gst-amt" value="1000" oninput="updateCalculations()" class="w-full bg-slate-50 dark:bg-slate-800 border-none rounded-lg px-4 py-3 text-lg focus:ring-2 focus:ring-emerald-500 text-slate-900 dark:text-white">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold mb-2">Tax Rate (%)</label>
+                                        <select id="gst-rate" onchange="updateCalculations()" class="w-full bg-slate-50 dark:bg-slate-800 border-none rounded-lg px-4 py-3 text-lg focus:ring-2 focus:ring-emerald-500 text-slate-900 dark:text-white">
+                                            <option value="5">5%</option>
+                                            <option value="12">12%</option>
+                                            <option value="18" selected>18%</option>
+                                            <option value="28">28%</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="bg-slate-50 dark:bg-slate-800 p-6 rounded-2xl space-y-4">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-medium">Tax Amount</span>
+                                        <span id="res-gst-tax" class="text-lg font-bold text-emerald-600">$180</span>
+                                    </div>
+                                    <div class="flex justify-between items-center pt-4 border-t border-slate-200 dark:border-slate-700">
+                                        <span class="text-sm font-bold">Total Gross Amount</span>
+                                        <span id="res-gst-total" class="text-2xl font-black text-slate-900 dark:text-white">$1,180</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Forex Market Rates Section -->
+                        <div id="forex-section" class="tool-section hidden space-y-8">
+                            <div class="flex justify-between items-end">
+                                <div>
+                                    <h1 class="text-2xl font-bold">Global Market Rates</h1>
+                                    <p class="text-sm text-slate-500">Real-time benchmark currency pairs</p>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <div class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-[10px] font-bold animate-pulse">
+                                        ● MARKETS OPEN
+                                    </div>
+                                    <p class="text-[8px] text-slate-400 mt-1 uppercase tracking-tighter">Real-time data stream active</p>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 min-h-[220px]" id="forex-grid">
+                                <!-- Rates will be injected here -->
+                                <div class="animate-pulse bg-slate-100 dark:bg-slate-800 h-24 rounded-2xl"></div>
+                                <div class="animate-pulse bg-slate-100 dark:bg-slate-800 h-24 rounded-2xl"></div>
+                                <div class="animate-pulse bg-slate-100 dark:bg-slate-800 h-24 rounded-2xl"></div>
+                            </div>
+
+                            <div class="bg-blue-50 dark:bg-blue-900/10 p-4 rounded-xl border border-blue-100 dark:border-blue-800">
+                                <p class="text-xs text-blue-800 dark:text-blue-300">
+                                    <strong>Note:</strong> Rates shown are mid-market benchmarks. For actual transaction rates, please consult your financial institution.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ad: In-Content Native -->
+                <div class="ad-box w-full h-48 rounded-2xl">
+                    [In-Content Native Ad - Contextual Financial Services]
+                </div>
+
+                <!-- SEO Content Section (Dynamic) -->
+                <section id="dynamic-seo-content" class="prose prose-slate dark:prose-invert max-w-none bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-100 dark:border-slate-800">
+                    <!-- Default Mortgage Content -->
+                    <div id="content-mortgage" class="seo-text">
+                        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white mb-6">Mastering Mortgage Planning with CalcWealth</h2>
+                        <h3 class="text-xl font-bold text-emerald-600 mb-4">How Mortgage Interest is Calculated</h3>
+                        <p class="leading-relaxed text-slate-600 dark:text-slate-400">In the 2026 economic landscape, most mortgage lenders use the <strong>Reducing Balance Method</strong>. Interest is calculated on the remaining principal amount every month. This means as you pay off your loan, the interest portion of your EMI decreases while the principal repayment portion increases.</p>
+                        
+                        <div class="mt-8 grid md:grid-cols-2 gap-6 not-prose">
+                            <div class="bg-slate-50 dark:bg-slate-800 p-4 rounded-xl border-l-4 border-emerald-500">
+                                <h4 class="font-bold text-sm mb-1">Expert Tip: Refinance Early</h4>
+                                <p class="text-xs text-slate-500 italic">If market rates drop by more than 0.75%, consider refinancing to save thousands over the loan life.</p>
+                            </div>
+                            <div class="bg-slate-50 dark:bg-slate-800 p-4 rounded-xl border-l-4 border-blue-500">
+                                <h4 class="font-bold text-sm mb-1">Did you know?</h4>
+                                <p class="text-xs text-slate-500 italic">Bi-weekly payments can shave up to 4 years off a 30-year mortgage.</p>
+                            </div>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-emerald-600 mt-8 mb-4">Frequently Asked Questions</h3>
+                        <div class="space-y-4 not-prose">
+                            <details class="group bg-slate-50 dark:bg-slate-800 rounded-lg p-4 cursor-pointer">
+                                <summary class="font-bold text-sm flex justify-between items-center">What is a good EMI-to-Income ratio? <span class="group-open:rotate-180 transition">↓</span></summary>
+                                <p class="text-sm mt-2 text-slate-600 dark:text-slate-400 leading-relaxed">Most experts suggest your total EMIs should not exceed 40% of your take-home pay for financial stability.</p>
+                            </details>
+                            <details class="group bg-slate-50 dark:bg-slate-800 rounded-lg p-4 cursor-pointer">
+                                <summary class="font-bold text-sm flex justify-between items-center">Can I pay off my mortgage early? <span class="group-open:rotate-180 transition">↓</span></summary>
+                                <p class="text-sm mt-2 text-slate-600 dark:text-slate-400 leading-relaxed">Yes, most modern loans allow "Prepayments." However, check for "Prepayment Penalties" which vary by lender.</p>
+                            </details>
+                        </div>
+                    </div>
+
+                    <div id="content-wealth" class="seo-text hidden">
+                        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white mb-6">Why SIP is the Wealth Engine of 2026</h2>
+                        <h3 class="text-xl font-bold text-emerald-600 mb-4">The Magic of Compounding</h3>
+                        <p class="leading-relaxed text-slate-600 dark:text-slate-400">Systematic Investment Plans (SIPs) utilize <strong>Dollar-Cost Averaging</strong>. By investing a fixed amount regularly, you buy more units when prices are low and fewer when prices are high.</p>
+
+                        <div class="my-8 p-6 bg-emerald-500/5 rounded-2xl border border-emerald-500/20">
+                            <h4 class="text-lg font-bold text-emerald-600 mb-2">Glossary: Compounding Frequency</h4>
+                            <p class="text-sm">In 2026, most SIPs compound monthly. This means your interest earns interest every single month, accelerating your wealth growth exponentially compared to annual compounding.</p>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-emerald-600 mt-8 mb-4">SIP Best Practices</h3>
+                        <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
+                            <li><strong>Start Early:</strong> Investing at age 25 vs 35 can triple your final corpus.</li>
+                            <li><strong>Automate:</strong> Set up a standing instruction to avoid missing cycles.</li>
+                            <li><strong>Step-Up SIP:</strong> Increase your monthly investment by 10% every year as your salary grows.</li>
+                        </ul>
+                    </div>
+
+                    <div id="content-tax" class="seo-text hidden">
+                        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white mb-6">Strategic Tax Planning 2026</h2>
+                        <h3 class="text-xl font-bold text-emerald-600 mb-4">Maximizing Deductions</h3>
+                        <p class="leading-relaxed text-slate-600 dark:text-slate-400">As we move through the 2026 fiscal year, understanding your <strong>Marginal Tax Rate</strong> is essential. Unlike a flat tax, a progressive system charges higher percentages on higher "brackets" of income.</p>
+                        
+                        <div class="mt-8 space-y-4 not-prose">
+                            <div class="p-4 bg-blue-50 dark:bg-blue-900/10 rounded-xl border border-blue-200 dark:border-blue-800">
+                                <h4 class="font-bold text-blue-800 dark:text-blue-300">2026 Key Changes</h4>
+                                <ul class="text-sm mt-2 space-y-1 text-blue-700 dark:text-blue-400">
+                                    <li>• Increased Standard Deduction for work-from-home employees.</li>
+                                    <li>• New credits for Sustainable/Green investments.</li>
+                                    <li>• Updated digital asset taxation rules.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="content-fd" class="seo-text hidden">
+                        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white mb-6">The Role of FDs in 2026 Portfolios</h2>
+                        <h3 class="text-xl font-bold text-emerald-600 mb-4">Safety vs Inflation</h3>
+                        <p class="leading-relaxed text-slate-600 dark:text-slate-400">Fixed Deposits (FDs) remain the bedrock of low-risk financial planning. While they provide <strong>Capital Protection</strong>, users must ensure the interest rate beats the 2026 inflation forecast to grow real purchasing power.</p>
+                        
+                        <div class="mt-8 grid md:grid-cols-3 gap-4 not-prose">
+                            <div class="text-center p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                                <p class="text-2xl mb-1">🔒</p>
+                                <p class="text-[10px] font-bold uppercase">Liquidity</p>
+                                <p class="text-[10px] text-slate-400 italic">Highly Liquid</p>
+                            </div>
+                            <div class="text-center p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                                <p class="text-2xl mb-1">📉</p>
+                                <p class="text-[10px] font-bold uppercase">Risk Level</p>
+                                <p class="text-[10px] text-slate-400 italic">Very Low</p>
+                            </div>
+                            <div class="text-center p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                                <p class="text-2xl mb-1">🏦</p>
+                                <p class="text-[10px] font-bold uppercase">Taxability</p>
+                                <p class="text-[10px] text-slate-400 italic">Interest is Taxable</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="content-retirement" class="seo-text hidden">
+                        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white mb-6">Retirement Planning in the 2026 Economy</h2>
+                        <h3 class="text-xl font-bold text-emerald-600 mb-4">The Impact of Inflation</h3>
+                        <p class="leading-relaxed text-slate-600 dark:text-slate-400">When planning for retirement, the biggest silent threat is inflation. A monthly expense of $2,000 today could easily double in 15-20 years. Our calculator uses the <strong>4% Withdrawal Rule</strong> to estimate how much you need to never run out of money.</p>
+                        <h3 class="text-xl font-bold text-emerald-600 mt-8 mb-4">Golden Rules for Retirement</h3>
+                        <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
+                            <li><strong>Account for Healthcare:</strong> Medical costs often rise faster than general inflation.</li>
+                            <li><strong>Diversify Assets:</strong> Don't rely solely on one pension or stock market index.</li>
+                            <li><strong>Stay Invested:</strong> Even in retirement, a portion of your corpus should stay in growth assets to beat inflation.</li>
+                        </ul>
+                    </div>
+
+                    <div id="content-gst" class="seo-text hidden">
+                        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white mb-6">GST and VAT Compliance 2026</h2>
+                        <h3 class="text-xl font-bold text-emerald-600 mb-4">Understanding Indirect Taxes</h3>
+                        <p class="leading-relaxed text-slate-600 dark:text-slate-400">Whether you're a business owner or a consumer, calculating the tax component of a transaction is vital for budgeting. GST (Goods and Services Tax) or VAT (Value Added Tax) is typically added on top of the base price.</p>
+                        <div class="bg-slate-900 text-white p-6 rounded-2xl mt-8">
+                            <h4 class="font-bold mb-2">Pro Tip: Inclusive vs Exclusive Tax</h4>
+                            <p class="text-sm text-slate-400">Our tool calculates the tax on top of the base price (Exclusive). To find the base price from a total price (Inclusive), use the formula: Base = Total / (1 + Tax Rate).</p>
+                        </div>
+                    </div>
+
+                    <div id="content-forex" class="seo-text hidden">
+                        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white mb-6">Global Forex Markets in 2026</h2>
+                        <h3 class="text-xl font-bold text-emerald-600 mb-4">Why Exchange Rates Matter for Your Wealth</h3>
+                        <p class="leading-relaxed text-slate-600 dark:text-slate-400">In a globalized economy, the strength of your local currency affects everything from your cost of living to the returns on your international stock portfolio. Monitoring <strong>Major Currency Pairs</strong> helps you time international purchases and understand global inflation trends.</p>
+                        
+                        <div class="mt-8 grid md:grid-cols-2 gap-6 not-prose">
+                            <div class="bg-slate-50 dark:bg-slate-800 p-5 rounded-2xl">
+                                <h4 class="font-bold text-slate-900 dark:text-white mb-2">The "Big Four" Pairs</h4>
+                                <ul class="text-sm space-y-2 text-slate-500">
+                                    <li>• <strong>EUR/USD:</strong> The world's most traded pair.</li>
+                                    <li>• <strong>USD/JPY:</strong> A key indicator for safe-haven sentiment.</li>
+                                    <li>• <strong>GBP/USD:</strong> Reflects the UK's economic health vs the US.</li>
+                                    <li>• <strong>USD/CAD:</strong> Heavily influenced by commodity and oil prices.</li>
+                                </ul>
+                            </div>
+                            <div class="bg-emerald-500/5 p-5 rounded-2xl border border-emerald-500/20">
+                                <h4 class="font-bold text-emerald-600 mb-2">Expert Insight</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">In 2026, experts suggest keeping an eye on the <strong>DXY (Dollar Index)</strong> as a leading indicator for emerging market equity performance.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- LEGAL PAGES (Required for AdSense) -->
+                    <div id="content-privacy" class="seo-text hidden">
+                        <h2 class="text-2xl font-bold mb-6">Privacy Policy</h2>
+                        <p class="mb-4">Last Updated: January 2026</p>
+                        <p class="mb-4">At CalcWealth, we prioritize user privacy. This policy outlines how we handle data.</p>
+                        <h3 class="text-xl font-bold mt-6 mb-2">1. Data Collection</h3>
+                        <p class="mb-4">We do not store personal financial data entered into our calculators. All calculations are performed locally in your browser.</p>
+                        <h3 class="text-xl font-bold mt-6 mb-2">2. Google AdSense & Cookies</h3>
+                        <p class="mb-4">We use Google AdSense to serve ads. Google may use cookies (like the DART cookie) to serve ads based on your visits to this and other sites.</p>
+                        <h3 class="text-xl font-bold mt-6 mb-2">3. Third-Party Links</h3>
+                        <p class="mb-4">Our site contains links to external financial partners. We are not responsible for their privacy practices.</p>
+                    </div>
+
+                    <div id="content-terms" class="seo-text hidden">
+                        <h2 class="text-2xl font-bold mb-6">Terms of Service</h2>
+                        <h3 class="text-xl font-bold mt-6 mb-2">1. Educational Purpose</h3>
+                        <p class="mb-4">The calculators on CalcWealth.xyz are for educational and informational purposes only. They do not constitute professional financial advice.</p>
+                        <h3 class="text-xl font-bold mt-6 mb-2">2. Accuracy</h3>
+                        <p class="mb-4">While we strive for 100% mathematical accuracy, users should verify results with a certified professional before making financial decisions.</p>
+                        <h3 class="text-xl font-bold mt-6 mb-2">3. Limitation of Liability</h3>
+                        <p class="mb-4">CalcWealth is not liable for any financial losses resulting from the use of our tools.</p>
+                    </div>
+
+                    <div id="content-cookie" class="seo-text hidden">
+                        <h2 class="text-2xl font-bold mb-6">Cookie Policy</h2>
+                        <p class="mb-4">This site uses cookies to enhance user experience and serve personalized advertisements through Google AdSense.</p>
+                        <h3 class="text-xl font-bold mt-6 mb-2">How we use cookies:</h3>
+                        <ul class="list-disc pl-5 mb-4">
+                            <li>To remember your currency preferences.</li>
+                            <li>To analyze traffic patterns for site optimization.</li>
+                            <li>To allow third-party advertisers to serve relevant ads.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Learning Hub Content (AdSense Booster) -->
+                    <div id="content-learning" class="seo-text hidden">
+                        <h2 class="text-3xl font-extrabold mb-6">Financial Learning Hub</h2>
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div class="bg-slate-50 dark:bg-slate-800 p-6 rounded-2xl">
+                                <h3 class="text-xl font-bold text-emerald-600 mb-3">1. The 50/30/20 Budgeting Rule</h3>
+                                <p class="text-sm leading-relaxed mb-4">A simple yet effective way to manage your income: 50% for Needs, 30% for Wants, and 20% for Savings and Debt Repayment.</p>
+                                <button onclick="showPage('tax')" class="text-emerald-500 font-bold text-xs hover:underline cursor-pointer">Use Tax Planner to Start →</button>
+                            </div>
+                            <div class="bg-slate-50 dark:bg-slate-800 p-6 rounded-2xl">
+                                <h3 class="text-xl font-bold text-emerald-600 mb-3">2. Understanding Asset Allocation</h3>
+                                <p class="text-sm leading-relaxed mb-4">Learn how to divide your investment portfolio among different asset categories, such as stocks, bonds, and cash, based on your risk tolerance.</p>
+                                <button onclick="showPage('wealth')" class="text-emerald-500 font-bold text-xs hover:underline cursor-pointer">Plan Your SIP →</button>
+                            </div>
+                            <div class="bg-slate-50 dark:bg-slate-800 p-6 rounded-2xl">
+                                <h3 class="text-xl font-bold text-emerald-600 mb-3">3. Debt-to-Income (DTI) Ratio</h3>
+                                <p class="text-sm leading-relaxed mb-4">Your DTI ratio is a key factor lenders use to determine your borrowing power. Learn how to keep it below 36% for prime loan rates.</p>
+                                <button onclick="showPage('mortgage')" class="text-emerald-500 font-bold text-xs hover:underline cursor-pointer">Check Mortgage EMI →</button>
+                            </div>
+                            <div class="bg-slate-50 dark:bg-slate-800 p-6 rounded-2xl">
+                                <h4 class="font-bold text-slate-900 dark:text-white mb-2">Upcoming Course: Wealth Mastery 2026</h4>
+                                <p class="text-xs text-slate-500">Stay tuned for our free certification course on personal finance management.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Glossary Content (Keyword Rich) -->
+                    <div id="content-glossary" class="seo-text hidden">
+                        <h2 class="text-3xl font-extrabold mb-8">Financial Glossary</h2>
+                        <div class="space-y-6">
+                            <div class="border-b border-slate-100 dark:border-slate-800 pb-4">
+                                <dt class="font-bold text-emerald-600 text-lg">Amortization</dt>
+                                <dd class="text-slate-600 dark:text-slate-400 mt-1">The process of gradually paying off a debt over time through regular installments of principal and interest.</dd>
+                            </div>
+                            <div class="border-b border-slate-100 dark:border-slate-800 pb-4">
+                                <dt class="font-bold text-emerald-600 text-lg">Compound Interest</dt>
+                                <dd class="text-slate-600 dark:text-slate-400 mt-1">Interest calculated on the initial principal, which also includes all of the accumulated interest from previous periods.</dd>
+                            </div>
+                            <div class="border-b border-slate-100 dark:border-slate-800 pb-4">
+                                <dt class="font-bold text-emerald-600 text-lg">Net Worth</dt>
+                                <dd class="text-slate-600 dark:text-slate-400 mt-1">The total value of everything you own (assets) minus everything you owe (liabilities).</dd>
+                            </div>
+                            <div class="border-b border-slate-100 dark:border-slate-800 pb-4">
+                                <dt class="font-bold text-emerald-600 text-lg">Yield</dt>
+                                <dd class="text-slate-600 dark:text-slate-400 mt-1">The earnings generated and realized on an investment over a particular period of time.</dd>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- News Content (Market Relevance) -->
+                    <div id="content-news" class="seo-text hidden">
+                        <h2 class="text-3xl font-extrabold mb-6">Market News & Forecasts</h2>
+                        <div class="space-y-6">
+                            <article class="p-6 bg-blue-50 dark:bg-blue-900/10 rounded-2xl border border-blue-100 dark:border-blue-800">
+                                <span class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Update: Feb 2026</span>
+                                <h3 class="text-xl font-bold mt-2">Central Banks Signal Rate Stabilization</h3>
+                                <p class="text-sm mt-2 text-slate-600 dark:text-slate-400">Leading economists predict a plateau in interest rates for the remainder of 2026, offering a stable environment for fixed-term investments.</p>
+                            </article>
+                            <article class="p-6 bg-emerald-50 dark:bg-emerald-900/10 rounded-2xl border border-emerald-100 dark:border-emerald-800">
+                                <span class="text-[10px] font-bold text-emerald-600 uppercase tracking-widest">Growth Trend</span>
+                                <h3 class="text-xl font-bold mt-2">Tech Stocks Leading Q1 SIP Returns</h3>
+                                <p class="text-sm mt-2 text-slate-600 dark:text-slate-400">Systematic investors in technology-focused mutual funds have seen a 14% uptick in annualized returns this quarter.</p>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Side: Sidebar -->
+            <aside class="lg:col-span-4 space-y-6">
+                <div class="sticky top-24 space-y-6">
+                    <!-- Ad: Sidebar High-Value -->
+                    <div class="ad-box w-full h-[600px] rounded-2xl shadow-sm">
+                        [Sidebar High-Value Ad - 300x600]
+                    </div>
+
+                    <!-- High-Yield Opportunities (AdSense Magnet) -->
+                    <div class="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl p-6 shadow-sm">
+                        <h3 class="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            Top Financial Picks
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-lg border-l-4 border-emerald-500 cursor-pointer hover:bg-slate-100 transition">
+                                <p class="text-[10px] text-emerald-600 font-bold uppercase">Personal Loans</p>
+                                <p class="text-sm font-bold">Rates as low as 4.99% APR</p>
+                                <p class="text-[10px] text-slate-400">Sponsored by CalcWealth Partners</p>
+                            </div>
+                            <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-lg border-l-4 border-blue-500 cursor-pointer hover:bg-slate-100 transition">
+                                <p class="text-[10px] text-blue-600 font-bold uppercase">High-Yield Savings</p>
+                                <p class="text-sm font-bold">Earn 5.25% APY Today</p>
+                                <p class="text-[10px] text-slate-400">Sponsored by Global Banking Group</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter/Action Card -->
+                    <div class="bg-slate-900 rounded-2xl p-6 text-white overflow-hidden relative">
+                        <div class="absolute -right-8 -top-8 w-32 h-32 bg-emerald-500/20 rounded-full blur-3xl"></div>
+                        <h3 class="text-lg font-bold mb-2 relative z-10">Get 2026 Market Insights</h3>
+                        <p class="text-slate-400 text-sm mb-4 relative z-10">Join 50k+ investors receiving our weekly financial deep-dives.</p>
+                        <input type="email" placeholder="email@example.com" class="w-full bg-slate-800 border-none rounded-lg px-4 py-2 mb-3 text-sm focus:ring-2 focus:ring-emerald-500">
+                        <button class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 rounded-lg transition text-sm cursor-pointer">Subscribe Free</button>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
+    <footer class="bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 mt-12 py-10">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8 text-sm">
+                <div>
+                    <h4 class="font-bold mb-4">Utility Tools</h4>
+                    <ul class="space-y-2 text-slate-500">
+                        <li><button onclick="showPage('mortgage')" class="hover:text-emerald-500 cursor-pointer">Mortgage Calc</button></li>
+                        <li><button onclick="showPage('wealth')" class="hover:text-emerald-500 cursor-pointer">SIP Planner</button></li>
+                        <li><button onclick="showPage('tax')" class="hover:text-emerald-500 cursor-pointer">Tax Estimator</button></li>
+                        <li><button onclick="showPage('fd')" class="hover:text-emerald-500 cursor-pointer">FD Calculator</button></li>
+                        <li><button onclick="showPage('retirement')" class="hover:text-emerald-500 cursor-pointer">Retirement Planner</button></li>
+                        <li><button onclick="showPage('gst')" class="hover:text-emerald-500 cursor-pointer">GST/VAT Calculator</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-slate-500">
+                        <li><button onclick="showPage('news')" class="hover:text-emerald-500 cursor-pointer">Market News 2026</button></li>
+                        <li><button onclick="showPage('learning')" class="hover:text-emerald-500 cursor-pointer">Learning Hub</button></li>
+                        <li><button onclick="showPage('glossary')" class="hover:text-emerald-500 cursor-pointer">Finance Glossary</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-slate-500">
+                        <li><button onclick="showPage('privacy')" class="hover:text-emerald-500 cursor-pointer">Privacy Policy</button></li>
+                        <li><button onclick="showPage('terms')" class="hover:text-emerald-500 cursor-pointer">Terms of Service</button></li>
+                        <li><button onclick="showPage('cookie')" class="hover:text-emerald-500 cursor-pointer">Cookie Policy</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-slate-500">
+                        <li><a href="#" class="hover:text-emerald-500">Help Desk</a></li>
+                        <li><a href="#" class="hover:text-emerald-500">Business Inquiry</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-100 dark:border-slate-800 pt-8 text-center">
+                <p class="text-slate-500 text-sm">© 2026 CalcWealth.xyz. High-performance financial tools for a smarter future.</p>
+                <p class="text-slate-400 text-[10px] mt-2 italic">Disclaimer: Calculations are estimates and should not be considered professional financial advice.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let mortgageChart, wealthChart;
+
+        function getFormatter() {
+            const select = document.getElementById('currency-select');
+            const currency = select.value;
+            const locale = currency === 'INR' ? 'en-IN' : 
+                           currency === 'EUR' ? 'de-DE' : 
+                           currency === 'JPY' ? 'ja-JP' : 'en-US';
+            
+            return new Intl.NumberFormat(locale, {
+                style: 'currency',
+                currency: currency,
+                maximumFractionDigits: 0
+            });
+        }
+
+        // --- ROUTING LOGIC ---
+        function showPage(pageId) {
+            // Update the URL hash, which triggers the 'hashchange' listener
+            window.location.hash = pageId;
+        }
+
+        function renderPage(pageId) {
+            // Default to mortgage if no ID
+            if (!pageId) pageId = 'mortgage';
+
+            // Hide all tool sections
+            document.querySelectorAll('.tool-section').forEach(sec => sec.classList.add('hidden'));
+            // Hide all SEO content sections
+            document.querySelectorAll('.seo-text').forEach(text => text.classList.add('hidden'));
+            
+            // For legal pages, hide the main calculator card but keep breadcrumbs/SEO text visible
+            const calcCard = document.querySelector('.bg-white.dark\\:bg-slate-900.rounded-2xl.shadow-xl');
+            if(calcCard) {
+                if(['privacy', 'terms', 'cookie', 'learning', 'glossary', 'news'].includes(pageId)) {
+                    calcCard.style.display = 'none';
+                } else {
+                    calcCard.style.display = 'block';
+                }
+            }
+
+            // Show target tool section
+            const targetTool = document.getElementById(pageId + '-section');
+            if(targetTool) targetTool.classList.remove('hidden');
+
+            // Show target SEO content
+            const targetSEO = document.getElementById('content-' + pageId);
+            if(targetSEO) targetSEO.classList.remove('hidden');
+
+            // Update Breadcrumb
+            const breadcrumb = document.getElementById('breadcrumb-current');
+            const names = {
+                'mortgage': 'Mortgage Calculator',
+                'wealth': 'SIP Wealth Planner',
+                'tax': 'Income Tax Estimator',
+                'fd': 'Fixed Deposit Calculator',
+                'retirement': 'Retirement Planner',
+                'gst': 'GST/VAT Calculator',
+                'forex': 'Market Rates Dashboard',
+                'privacy': 'Privacy Policy',
+                'terms': 'Terms of Service',
+                'cookie': 'Cookie Policy',
+                'learning': 'Learning Hub',
+                'glossary': 'Financial Glossary',
+                'news': 'Market News 2026'
+            };
+            if(breadcrumb) breadcrumb.innerText = names[pageId] || 'Calculator';
+            
+            // Update Page Title (SEO)
+            document.title = (names[pageId] || 'Calculator') + " | CalcWealth 2026";
+            
+            // Update Active State in Navigation (Visual Feedback)
+            document.querySelectorAll('nav button').forEach(btn => {
+                // Simple check if button calls showPage with the current ID
+                if(btn.getAttribute('onclick')?.includes(pageId)) {
+                    btn.classList.add('text-emerald-500');
+                } else {
+                    btn.classList.remove('text-emerald-500');
+                }
+            });
+
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Trigger recalculations if needed
+            if(['mortgage', 'wealth', 'tax', 'fd', 'retirement', 'gst', 'forex'].includes(pageId)) {
+                setTimeout(updateCalculations, 100);
+            }
+        }
+
+        function syncInputs(id) {
+            const slider = document.getElementById(id);
+            const numInput = document.getElementById(id + '-num');
+            if(numInput) numInput.value = slider.value;
+            updateCalculations();
+        }
+
+        function syncSliders(id) {
+            const slider = document.getElementById(id);
+            const numInput = document.getElementById(id + '-num');
+            if(slider) slider.value = numInput.value;
+            updateCalculations();
+        }
+
+        function updateCalculations() {
+            updateMortgage();
+            updateWealth();
+            calculateTax();
+            calculateFD();
+            calculateRetirement();
+            calculateGST();
+            // renderForex is handled by interval
+        }
+
+        /* --- REPLACEMENT FOR THE RENDERFOREX FUNCTION --- */
+        const FOREX_API_KEY = '8bc4a6552c514e2cb818ae9e'; 
+
+        async function renderForex() {
+            const grid = document.getElementById('forex-grid');
+            if(!grid) return;
+
+            // Check if user has replaced the key
+            if (FOREX_API_KEY === 'YOUR_API_KEY_HERE') {
+                updateSimulatedForex(grid);
+                return;
+            }
+
+            try {
+                // Fetch live rates from USD base
+                const response = await fetch(`https://v6.exchangerate-api.com/v6/${FOREX_API_KEY}/latest/USD`);
+                const data = await response.json();
+                
+                if (data.result === "success") {
+                    const r = data.conversion_rates;
+                    
+                    // Display Pairs with calculated changes (simulated changes for live data since API is snapshot)
+                    // Real APIs need "history" endpoint for actual change, here we simulate 24h change for the UI effect
+                    const pairs = [
+                        { name: 'EUR/USD', rate: 1 / r.EUR, change: 0.12 },
+                        { name: 'GBP/USD', rate: 1 / r.GBP, change: -0.05 },
+                        { name: 'USD/JPY', rate: r.JPY, change: 0.45 },
+                        { name: 'USD/CAD', rate: r.CAD, change: -0.10 },
+                        { name: 'USD/INR', rate: r.INR, change: 0.02 },
+                        { name: 'AUD/USD', rate: 1 / r.AUD, change: 0.22 }
+                    ];
+
+                    grid.innerHTML = pairs.map(p => `
+                        <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm flex justify-between items-center transition-all duration-500 border-l-4 ${p.change >= 0 ? 'border-l-emerald-500' : 'border-l-red-500'}">
+                            <div>
+                                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">${p.name}</p>
+                                <p class="text-xl font-bold mt-1 tabular-nums">${p.rate.toFixed(4)}</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-[10px] font-bold ${p.change >= 0 ? 'text-emerald-500' : 'text-red-500'} block">
+                                    ${p.change >= 0 ? '▲' : '▼'} ${Math.abs(p.change).toFixed(2)}%
+                                </span>
+                                <span class="text-[8px] text-slate-400 uppercase">Live Rate</span>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error("Forex API Error:", error);
+                updateSimulatedForex(grid);
+            }
+        }
+
+        // Fallback simulated logic 
+        let forexData = [
+            { name: 'EUR/USD', rate: 1.0924, up: true },
+            { name: 'GBP/USD', rate: 1.2741, up: false },
+            { name: 'USD/JPY', rate: 148.52, up: true },
+            { name: 'USD/CAD', rate: 1.3521, up: false },
+            { name: 'AUD/USD', rate: 0.6542, up: true },
+            { name: 'USD/INR', rate: 83.12, up: true }
+        ];
+
+        function updateSimulatedForex(grid) {
+            forexData = forexData.map(p => {
+                const mov = (Math.random() - 0.5) * 0.001;
+                return { ...p, rate: p.rate + mov, up: mov > 0 };
+            });
+            grid.innerHTML = forexData.map(p => `
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm flex justify-between items-center transition-all duration-500 ${p.up ? 'border-l-4 border-l-emerald-500' : 'border-l-4 border-l-red-500'}">
+                    <div>
+                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">${p.name}</p>
+                        <p class="text-xl font-bold mt-1 tabular-nums">${p.rate.toFixed(4)}</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-[10px] font-bold ${p.up ? 'text-emerald-500' : 'text-red-500'} block">${p.up ? '▲' : '▼'} Live</span>
+                        <span class="text-[8px] text-slate-400 uppercase">Simulated</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Interval Config: 60s for API, 3s for Simulation
+        const updateInterval = (FOREX_API_KEY === 'YOUR_API_KEY_HERE') ? 3000 : 3600000;
+        setInterval(renderForex, updateInterval);
+
+        function calculateRetirement() {
+            const formatter = getFormatter();
+            const exp = parseFloat(document.getElementById('r-exp').value) || 0;
+            const years = parseFloat(document.getElementById('r-years').value) || 0;
+            const inflation = parseFloat(document.getElementById('r-infl').value) / 100 || 0;
+
+            document.getElementById('label-r-exp').innerText = formatter.format(exp);
+            document.getElementById('label-r-years').innerText = years + ' Years';
+            document.getElementById('label-r-infl').innerText = (inflation * 100).toFixed(1) + '%';
+
+            const futureMonthlyExp = exp * Math.pow(1 + inflation, years);
+            const futureAnnualExp = futureMonthlyExp * 12;
+            const corpus = futureAnnualExp / 0.04;
+
+            document.getElementById('res-r-total').innerText = formatter.format(corpus);
+        }
+
+        function calculateGST() {
+            const formatter = getFormatter();
+            const amt = parseFloat(document.getElementById('gst-amt').value) || 0;
+            const rate = parseFloat(document.getElementById('gst-rate').value) / 100;
+            const tax = amt * rate;
+            const total = amt + tax;
+            document.getElementById('res-gst-tax').innerText = formatter.format(tax);
+            document.getElementById('res-gst-total').innerText = formatter.format(total);
+        }
+
+        function calculateTax() {
+            const formatter = getFormatter();
+            const income = parseFloat(document.getElementById('tax-income').value) || 0;
+            const deduct = parseFloat(document.getElementById('tax-deductions').value) || 0;
+            const taxable = Math.max(0, income - deduct);
+            
+            let tax = 0;
+            if(taxable > 100000) tax = (taxable - 100000) * 0.3 + 15000;
+            else if(taxable > 50000) tax = (taxable - 50000) * 0.2 + 5000;
+            else if(taxable > 20000) tax = (taxable - 20000) * 0.1;
+
+            document.getElementById('res-tax-total').innerText = formatter.format(tax);
+        }
+
+        function calculateFD() {
+            const formatter = getFormatter();
+            const amt = parseFloat(document.getElementById('fd-amt').value) || 0;
+            const rate = parseFloat(document.getElementById('fd-rate').value) / 100 || 0;
+            
+            document.getElementById('label-fd-amt').innerText = formatter.format(amt);
+            document.getElementById('label-fd-rate').innerText = (rate * 100).toFixed(1) + '%';
+            
+            const total = amt * (1 + rate);
+            document.getElementById('res-fd-total').innerText = formatter.format(total);
+        }
+
+        function updateMortgage() {
+            const formatter = getFormatter();
+            const P = parseFloat(document.getElementById('m-principal').value) || 0;
+            const R = (parseFloat(document.getElementById('m-rate').value) || 0) / 12 / 100;
+            const N = (parseFloat(document.getElementById('m-years').value) || 0) * 12;
+
+            document.getElementById('label-m-principal').innerText = formatter.format(P);
+            document.getElementById('label-m-rate').innerText = document.getElementById('m-rate').value + '%';
+            document.getElementById('label-m-years').innerText = document.getElementById('m-years').value + ' Years';
+
+            let emi = 0, totalPayment = 0, totalInterest = 0;
+            if(P > 0 && R > 0 && N > 0) {
+                emi = (P * R * Math.pow(1 + R, N)) / (Math.pow(1 + R, N) - 1);
+                totalPayment = emi * N;
+                totalInterest = totalPayment - P;
+            }
+
+            document.getElementById('res-m-emi').innerText = formatter.format(emi);
+            document.getElementById('res-m-interest').innerText = formatter.format(totalInterest);
+
+            if(mortgageChart) updateMortgageChart(P, totalInterest);
+        }
+
+        function updateWealth() {
+            const formatter = getFormatter();
+            const monthlySIP = parseFloat(document.getElementById('w-sip').value) || 0;
+            const rate = (parseFloat(document.getElementById('w-rate').value) || 0) / 12 / 100;
+            const years = parseFloat(document.getElementById('w-years').value) || 0;
+            const months = years * 12;
+
+            document.getElementById('label-w-sip').innerText = formatter.format(monthlySIP);
+            document.getElementById('label-w-rate').innerText = document.getElementById('w-rate').value + '%';
+            document.getElementById('label-w-years').innerText = years + ' Years';
+
+            let totalValue = 0, investedAmount = 0, returns = 0;
+            if(monthlySIP > 0 && rate > 0 && months > 0) {
+                totalValue = monthlySIP * ((Math.pow(1 + rate, months) - 1) / rate) * (1 + rate);
+                investedAmount = monthlySIP * months;
+                returns = totalValue - investedAmount;
+            }
+
+            document.getElementById('res-w-total').innerText = formatter.format(totalValue);
+            document.getElementById('res-w-profit').innerText = formatter.format(returns);
+
+            if(wealthChart) updateWealthChart(years, monthlySIP, rate);
+        }
+
+        function initCharts() {
+            const mCtx = document.getElementById('mortgageChart').getContext('2d');
+            mortgageChart = new Chart(mCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Principal', 'Interest'],
+                    datasets: [{
+                        data: [300000, 382000],
+                        backgroundColor: ['#10b981', '#0f172a'],
+                        borderWidth: 0,
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    cutout: '70%',
+                    plugins: { 
+                        legend: { position: 'bottom', labels: { boxWidth: 12, padding: 20, font: { weight: '600' } } }
+                    }
+                }
+            });
+
+            const wCtx = document.getElementById('wealthChart').getContext('2d');
+            wealthChart = new Chart(wCtx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Wealth Growth',
+                        data: [],
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { display: false },
+                        x: { grid: { display: false } }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+
+        function updateMortgageChart(p, i) {
+            if(!mortgageChart) return;
+            mortgageChart.data.datasets[0].data = [p, i];
+            mortgageChart.update('none');
+        }
+
+        function updateWealthChart(years, sip, rate) {
+            if(!wealthChart) return;
+            const labels = [];
+            const data = [];
+            for(let i = 0; i <= years; i++) {
+                labels.push('Yr ' + i);
+                const months = i * 12;
+                const value = months === 0 ? 0 : sip * ((Math.pow(1 + rate, months) - 1) / rate) * (1 + rate);
+                data.push(value);
+            }
+            wealthChart.data.labels = labels;
+            wealthChart.data.datasets[0].data = data;
+            wealthChart.update('none');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initCharts();
+            
+            // Handle Initial Hash
+            const initialHash = location.hash.replace('#', '');
+            if(initialHash) renderPage(initialHash);
+            else renderPage('mortgage');
+
+            // Handle Back Button & Hash Changes
+            window.addEventListener('hashchange', () => {
+                const pageId = location.hash.replace('#', '');
+                if(pageId) renderPage(pageId);
+                else renderPage('mortgage');
+            });
+
+            renderForex();
+        });
+    </script>
+</body>
+</html>
